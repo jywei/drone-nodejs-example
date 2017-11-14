@@ -142,7 +142,7 @@
 
 pipeline:
 
-  testing:
+  install:
     image: node:8.6.0
     commands:
       - node -v
@@ -150,5 +150,19 @@ pipeline:
       - yarn --version
       - yarn config set cache-folder .yarn-cache
       - yarn install --pure-lockfile
+      # - yarn run test
+      # - yarn run lint
+
+  testing:
+    image: node:8.6.0
+    group: testing
+    commands:
       - yarn run test
+
+  lint:
+    image: node:8.6.0
+    group: testing
+    commands:
       - yarn run lint
+
+
